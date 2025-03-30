@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS realestate;
+USE realestate;
+
+CREATE TABLE IF NOT EXISTS Agents (
+    agent_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone VARCHAR(10) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Properties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    size INT NOT NULL,
+    amenities TEXT NOT NULL,
+    agent_id INT,
+    FOREIGN KEY (agent_id) REFERENCES Agents(agent_id) ON DELETE SET NULL
+);
